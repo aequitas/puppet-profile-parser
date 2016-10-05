@@ -92,7 +92,7 @@ class OtherSlice < Slice
   attr_reader :name
 
   def parse(line)
-    match = line.match(/PROFILE \[\d+\] ([\d\.]+) (.*): took ([\d\.]+) seconds$/)
+    match = line.match(/PROFILE \[[a-z\d]+\] ([\d\.]+) (.*): took ([\d\.]+) seconds$/)
     @id = match[1]
     @name = match[2]
     @time = match[3]
@@ -146,7 +146,7 @@ ARGF.each_line do |line|
   end
 end
 
-root = Namespace.new('1', nil)
+root = Namespace.new('', nil)
 
 things.each do |thing|
   root.add(thing.id, thing)
